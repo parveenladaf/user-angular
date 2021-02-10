@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+$img-path: './global_assets/images';
+$summernote-font-path: './global_assets/css/icons/summernote/';
+@import './global_assets/scss/layouts/layout_1/default/compile/bootstrap.scss';
+@import './global_assets/scss/layouts/layout_1/default/compile/bootstrap_limitless.scss';
+@import './global_assets/scss/layouts/layout_1/default/compile/colors.scss';
+@import './global_assets/scss/layouts/layout_1/default/compile/components.scss';
+@import './global_assets/scss/layouts/layout_1/default/compile/layout.scss';
+@import './global_assets/css/icons/icomoon/styles.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900');
+app-root,
+app-layout,
+app-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.blue-snackbar {
+    background: black;
+}
