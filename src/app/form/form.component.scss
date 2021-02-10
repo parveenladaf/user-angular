@@ -3,6 +3,14 @@ input.ng-invalid.ng-dirty {
     box-shadow: 0 1px 0 0 red !important;
 }
 
-mat-form-field {
-    width: 44rem !important;
+@media only screen and (max-width:400px) {
+    mat-form-field {
+        width: 15rem !important;
+    }
+}
+
+@media only screen and (min-width:400px) {
+    mat-form-field {
+        width: 44rem !important;
+    }
 }
