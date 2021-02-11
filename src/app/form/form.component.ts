@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -10,15 +10,26 @@ import { UserService } from '../user.service';
 })
 export class FormComponent implements OnInit {
   userForm: FormGroup;
-  refId = false;
+  refId = '';
+  userId = '';
+  disableHash = {
+    refId: false
+  }
   currLat = 0;
   currLng = 0;
-  constructor(private formBuilder: FormBuilder, private readonly route: ActivatedRoute, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private readonly route: ActivatedRoute, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.refId = this.route.snapshot.params.id;
+    this.route.queryParamMap.subscribe(params => {
+      if (params.get('reference_id')) {
+        this.refId = params.get('reference_id');
+        this.disableHash.refId = true;
+      }
+      if (params.get('user_id')) {
+        this.userId = params.get('user_id');
+      }
+    });
     this.initFormControl();
-    this.refId = true
     this.getCurrentLocation();
   }
   initFormControl() {
@@ -59,9 +70,12 @@ export class FormComponent implements OnInit {
         /^(?<year>\d+)-(?<month>\d+)-(?<day>\d+)T.*$/,
         '$<year>-$<month>-$<day>'
       );
-
+    if (this.currLat == 0 && this.currLng == 0) {
+      this.userService.openToast('Please Allow browser location', 'Close');
+      return;
+    }
     var points = new Array();
-    points['lat'] =this.currLat;
+    points['lat'] = this.currLat;
     points['lng'] = this.currLng;
 
 
@@ -73,21 +87,19 @@ export class FormComponent implements OnInit {
       dob: formatedDate,
       gender: this.userForm.value.gender,
       location: points,
-      user_id: 'parveen123',
+      user_id: this.userId,
       password: this.userForm.value.password
     }
 
     console.log(params);
     // Save Api Call 
     this.userService.add(params).subscribe((data) => {
-      if (data) {
-        this.userService.openToast('Added Successfully', 'Close');
-      } else {
-        this.userService.openToast('Something went wrong', 'Close');
-      }
+      this.userService.openToast('Added Successfully', 'Close');
     }, (err) => {
       if (err['error']['errors'] == null) {
         this.userService.openToast(err['error']['message'], 'Close');
+      } else {
+        this.userService.openToast('Something went wrong', 'Close');
       }
     });
   }

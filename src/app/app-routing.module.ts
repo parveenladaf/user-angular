@@ -5,7 +5,7 @@ import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   {
-    path: 'form/refer_id/:id', component: FormComponent
+    path: '', component: FormComponent
 
   }
 ];
