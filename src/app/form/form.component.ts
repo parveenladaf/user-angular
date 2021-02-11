@@ -52,33 +52,35 @@ export class FormComponent implements OnInit {
       this.userService.openToast('Please Enter All The Required Fields', 'Close');
       return;
     }
-    
+
     const formatedDate = (this.userForm.value.deliveryDate)
-    .toISOString()
-    .replace(
-      /^(?<year>\d+)-(?<month>\d+)-(?<day>\d+)T.*$/,
-      '$<year>-$<month>-$<day>'
+      .toISOString()
+      .replace(
+        /^(?<year>\d+)-(?<month>\d+)-(?<day>\d+)T.*$/,
+        '$<year>-$<month>-$<day>'
       );
-      
-      const params = {
-        name: this.userForm.value.name,
-        reference_id: this.userForm.value.reference_id,
-        mobile_number: this.userForm.value.mobile_no,
-        email: this.userForm.value.email_id,
-        dob: formatedDate,
-        gender:this.userForm.value.gender,
-        location : {
-          lat: this.currLat,
-          lng: this.currLng
-        },
-        user_id : 'sdasdsa',
-        password:this.userForm.value.password
-      }
-      
-      console.log(params);
-      // Save Api Call 
+
+    var points = new Array();
+    points['lat'] =this.currLat;
+    points['lng'] = this.currLng;
+
+
+    const params = {
+      name: this.userForm.value.name,
+      reference_id: this.userForm.value.reference_id,
+      mobile_number: this.userForm.value.mobile_no,
+      email: this.userForm.value.email_id,
+      dob: formatedDate,
+      gender: this.userForm.value.gender,
+      location: points,
+      user_id: 'parveen123',
+      password: this.userForm.value.password
+    }
+
+    console.log(params);
+    // Save Api Call 
     this.userService.add(params).subscribe((data) => {
-      if (data['staus'] === 200) {
+      if (data) {
         this.userService.openToast('Added Successfully', 'Close');
       } else {
         this.userService.openToast('Something went wrong', 'Close');
