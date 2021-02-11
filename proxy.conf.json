@@ -1,6 +1,0 @@
-{
-    "/api": {
-        "target": "https://82c46r3in2.execute-api.ap-south-1.amazonaws.com/prod/dashboard/coucou",
-        "secure": false
-    }
-}
