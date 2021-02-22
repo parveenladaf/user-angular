@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule, MatFormField, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatSnackBarModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -34,7 +33,6 @@ import { NgxLoadingModule } from 'ngx-loading';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    NgxLoadingModule,
     NoopAnimationsModule
   ],
   providers: [],
