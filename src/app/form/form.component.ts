@@ -103,7 +103,7 @@ export class FormComponent implements OnInit {
     }, (err) => {
       this.loader = false;
       this.isDisabled = false;
-      if (err['error']['errors'] == null) {
+      if (err['error']['message']) {
         this.userService.openToast(err['error']['message'], 'Close');
       } else {
         this.userService.openToast('Something went wrong', 'Close');
