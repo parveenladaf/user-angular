@@ -10,8 +10,10 @@ import { UserService } from '../user.service';
 })
 export class FormComponent implements OnInit {
   userForm: FormGroup;
+  loader = false;
   refId = '';
   userId = '';
+  isDisabled = false;
   disableHash = {
     refId: false
   }
@@ -92,10 +94,15 @@ export class FormComponent implements OnInit {
     }
 
     console.log(params);
+    this.loader = true;
+    this.isDisabled = true;
     // Save Api Call 
     this.userService.add(params).subscribe((data) => {
+      this.loader = false;
       this.userService.openToast('Added Successfully', 'Close');
     }, (err) => {
+      this.loader = false;
+      this.isDisabled = false;
       if (err['error']['errors'] == null) {
         this.userService.openToast(err['error']['message'], 'Close');
       } else {
