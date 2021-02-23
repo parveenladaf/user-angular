@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipConfig } from 'ngx-bootstrap/tooltip';
-import { Ng2TelInputModule } from 'ng2-tel-input';
 
 
 @NgModule({
@@ -40,7 +39,6 @@ import { Ng2TelInputModule } from 'ng2-tel-input';
     NoopAnimationsModule,
     NgxIntlTelInputModule,
     BsDropdownModule.forRoot(),
-    Ng2TelInputModule,
     BrowserAnimationsModule
   ],
   providers: [BsDropdownConfig, TooltipConfig],
