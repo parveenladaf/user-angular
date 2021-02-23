@@ -8,9 +8,13 @@ import { LayoutComponent } from './ui/layout/layout.component';
 import { FooterComponent } from './ui/footer/footer.component';
 import { FormComponent } from './form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule, MatFormField, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatSnackBarModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipConfig } from 'ngx-bootstrap/tooltip';
+import { Ng2TelInputModule } from 'ng2-tel-input';
 
 
 @NgModule({
@@ -33,9 +37,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    NgxIntlTelInputModule,
+    BsDropdownModule.forRoot(),
+    Ng2TelInputModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [BsDropdownConfig, TooltipConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

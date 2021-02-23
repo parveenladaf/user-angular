@@ -40,7 +40,7 @@ export class FormComponent implements OnInit {
       deliveryDate: [new Date()],
       gender: ['male'],
       name: ['', Validators.required],
-      mobile_no: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern('^[6789][0-9]{9}$')]],
+      mobile_no: ['', Validators.required],
       email_id: ['', [Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', Validators.required],
     });
@@ -84,7 +84,7 @@ export class FormComponent implements OnInit {
     const params = {
       name: this.userForm.value.name,
       reference_id: this.userForm.value.reference_id,
-      mobile_number: this.userForm.value.mobile_no,
+      mobile_number: this.userForm.value.mobile_no.e164Number,
       email: this.userForm.value.email_id,
       dob: formatedDate,
       gender: this.userForm.value.gender,
