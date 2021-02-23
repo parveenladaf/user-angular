@@ -25,6 +25,7 @@
     "google-libphonenumber": "^3.2.17",
     "hammerjs": "^2.0.8",
     "intl-input-phone": "0.0.7",
+    "intl-tel-input": "^17.0.3",
     "ngx-bootstrap": "^6.2.0",
     "ngx-intl-tel-input": "^2.5.4",
     "rxjs": "~6.4.0",
