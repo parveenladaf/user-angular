@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipConfig } from 'ngx-bootstrap/tooltip';
+import { SuccessComponent } from './success/success.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TooltipConfig } from 'ngx-bootstrap/tooltip';
     HeaderComponent,
     LayoutComponent,
     FooterComponent,
-    FormComponent
+    FormComponent,
+    SuccessComponent
   ],
   imports: [
     FormsModule,

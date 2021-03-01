@@ -12,20 +12,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Refer Id:<span class="text-danger">*</span></label>
-                                        <input type="text" [readonly]="refId" name="referId" class="form-control" formControlName="reference_id" required />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Mobile No:<span class="text-danger">*</span></label>
-                                        <ngx-intl-tel-input [searchCountryFlag]="true" [maxLength]="10" name="mobileNo" formControlName="mobile_no"></ngx-intl-tel-input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
                                         <label>Name:<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control" formControlName="name" required />
                                     </div>
@@ -51,7 +37,21 @@
                                         </mat-form-field>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Mobile No:<span class="text-danger">*</span></label>
+                                        <ngx-intl-tel-input [searchCountryFlag]="true" [maxLength]="10" name="mobileNo" formControlName="mobile_no"></ngx-intl-tel-input>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Password:<span class="text-danger">*</span></label>
+                                        <input type="password" name="password" class="form-control" formControlName="password" required />
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="d-block">Gender:</label>
@@ -67,14 +67,6 @@
                                                     name="gender" data-fouc />Female
                                             </label>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Password:<span class="text-danger">*</span></label>
-                                        <input type="password" name="password" class="form-control" formControlName="password" required />
                                     </div>
                                 </div>
                             </div>

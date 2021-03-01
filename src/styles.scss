@@ -18,6 +18,13 @@ app-form {
     overflow: auto;
 }
 
+app-success {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+}
+
 html,
 body {
     height: 100%;

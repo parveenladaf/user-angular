@@ -14,25 +14,19 @@ export class FormComponent implements OnInit {
   refId = '';
   userId = '';
   isDisabled = false;
-  disableHash = {
-    refId: false
-  }
-  currLat = 0;
-  currLng = 0;
+
   constructor(private formBuilder: FormBuilder, private readonly route: ActivatedRoute, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
       if (params.get('reference_id')) {
         this.refId = params.get('reference_id');
-        this.disableHash.refId = true;
       }
       if (params.get('user_id')) {
         this.userId = params.get('user_id');
       }
     });
     this.initFormControl();
-    this.getCurrentLocation();
   }
   initFormControl() {
     this.userForm = this.formBuilder.group({
@@ -44,19 +38,6 @@ export class FormComponent implements OnInit {
       email_id: ['', [Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', Validators.required],
     });
-  }
-
-  getCurrentLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-
-        this.currLat = position.coords.latitude;
-        this.currLng = position.coords.longitude;
-      });
-    }
-    else {
-      alert("Geolocation is not supported by this browser.");
-    }
   }
 
 
@@ -72,14 +53,6 @@ export class FormComponent implements OnInit {
         /^(?<year>\d+)-(?<month>\d+)-(?<day>\d+)T.*$/,
         '$<year>-$<month>-$<day>'
       );
-    if (this.currLat == 0 && this.currLng == 0) {
-      this.userService.openToast('Please Allow browser location', 'Close');
-      return;
-    }
-    var points = new Array();
-    points['lat'] = this.currLat;
-    points['lng'] = this.currLng;
-
 
     const params = {
       name: this.userForm.value.name,
@@ -88,7 +61,6 @@ export class FormComponent implements OnInit {
       email: this.userForm.value.email_id,
       dob: formatedDate,
       gender: this.userForm.value.gender,
-      location: points,
       user_id: this.userId,
       password: this.userForm.value.password
     }
@@ -100,6 +72,7 @@ export class FormComponent implements OnInit {
     this.userService.add(params).subscribe((data) => {
       this.loader = false;
       this.userService.openToast('Added Successfully', 'Close');
+      this.router.navigate(['/success']);
     }, (err) => {
       this.loader = false;
       this.isDisabled = false;
