@@ -72,7 +72,6 @@ export class FormComponent implements OnInit {
     this.userService.add(params).subscribe((data) => {
       this.loader = false;
       this.userService.openToast('Added Successfully', 'Close');
-      this.router.navigate(['/success']);
     }, (err) => {
       this.loader = false;
       this.isDisabled = false;
